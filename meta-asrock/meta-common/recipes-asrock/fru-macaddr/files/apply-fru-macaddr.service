@@ -1,0 +1,11 @@
+[Unit]
+Description=Apply MAC address from FRU EEPROM
+Before=network-pre.target
+Wants=network-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/apply-fru-macaddr.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -28,4 +28,5 @@ RDEPENDS:${PN}-system = " \
 	phosphor-host-postd \
 	phosphor-ipmi-kcs \
 	phosphor-post-code-manager \
+	fru-macaddr \
 	"
