@@ -141,7 +141,7 @@ index 000000000000..c3efd704d2c2
 +            label = "bmc";
 +            m25p,fast-read;
 +            spi-max-frequency = <10000000>;
-+            #include "openbmc-flash-layout.dtsi"
++            #include "openbmc-flash-layout-64.dtsi"
 +    };
 +};
 +
@@ -168,7 +168,7 @@ index 000000000000..c3efd704d2c2
 +
 +&i2c1 {
 +    status = "okay";
-+    
++
 +    /* Thermal sensor */
 +    w83773g@4c {
 +        compatible = "nuvoton,w83773g";
