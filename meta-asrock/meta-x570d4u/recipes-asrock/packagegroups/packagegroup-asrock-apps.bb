@@ -10,8 +10,10 @@ PACKAGES = " \
 	"
 
 PROVIDES += "virtual/obmc-flash-mgmt"
+PROVIDES += "virtual/obmc-system-mgmt"
 
 RPROVIDES:${PN}-flash += "virtual-obmc-flash-mgmt"
+RPROVIDES:${PN}-system += "virtual-obmc-system-mgmt"
 
 SUMMARY:${PN}-flash = "ASRock Flash"
 RDEPENDS:${PN}-flash = " \
@@ -29,4 +31,3 @@ RDEPENDS:${PN}-system = " \
 	phosphor-ipmi-kcs \
 	phosphor-post-code-manager \
 	"
-
