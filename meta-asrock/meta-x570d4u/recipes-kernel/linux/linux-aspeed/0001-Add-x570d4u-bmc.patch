@@ -11,7 +11,7 @@ Subject: [PATCH] Add x570d4u bmc
 diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts
 new file mode 100644
 index 000000000000..c3efd704d2c2
-@@ -0,0 +1,275 @@
+@@ -0,0 +1,345 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/dts-v1/;
 +#include "aspeed-g5.dtsi"
@@ -90,15 +90,22 @@ index 000000000000..c3efd704d2c2
 +            linux,code = <ASPEED_GPIO(F, 1)>;
 +        };
 +    };
++    
++    iio-hwmon {
++        compatible = "iio-hwmon";
++        io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
++            <&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
++            <&adc 10>, <&adc 11>, <&adc 12>;
++    };
 +};
 +
 +&gpio {
 +    status = "okay";
 +    gpio-line-names =
-+    /*A0-A7*/       "","","","NMI_BTN_N","","","","",
++    /*A0-A7*/       "","","","","","","","",
 +    /*B0-B7*/       "","","","","","","","",
 +    /*C0-C7*/       "","","","","","","","",
-+    /*D0-D7*/       "","","","","","","","",
++    /*D0-D7*/       "BMC_PSIN","BMC_PSOUT","BMC_RESETCON","RESETCON","","","","",
 +    /*E0-E7*/       "","","","","","","","",
 +    /*F0-F7*/       "","","","","","","","",
 +    /*G0-G7*/       "HWM_BAT_EN","","","","","","","",
@@ -182,6 +189,47 @@ index 000000000000..c3efd704d2c2
 +
 +&i2c4 {
 +    status = "okay";
++    
++    /* I2C mux */
++    i2c-switch@70 {
++        compatible = "nxp,pca9545";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x70>;
++
++        /*interrupt-parent = <&ipic>;
++        interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
++        interrupt-controller;
++        #interrupt-cells = <2>;*/
++
++        i2c@0 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0>;
++        };
++        
++        i2c@1 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <1>;
++        };
++        
++        i2c@2 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <2>;
++        };
++
++        i2c@3 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <3>;
++        };
++    };
++};
++
++&i2c6 {
++    status = "okay";
 +};
 +
 +&i2c7 {
@@ -193,6 +241,10 @@ index 000000000000..c3efd704d2c2
 +        reg = <0x57>;
 +        pagesize = <16>;
 +    };
++};
++
++&i2c8 {
++    status = "okay";
 +};
 +
 +&gfx {
@@ -286,6 +338,24 @@ index 000000000000..c3efd704d2c2
 +        reg = <0x07>;
 +        aspeed,fan-tach-ch = /bits/ 8 <0x0e 0x0f>;
 +    };
++};
++
++&adc {
++    status = "okay";
++    pinctrl-names = "default";
++    pinctrl-0 = <&pinctrl_adc0_default
++            &pinctrl_adc1_default
++            &pinctrl_adc2_default
++            &pinctrl_adc3_default
++            &pinctrl_adc4_default
++            &pinctrl_adc5_default
++            &pinctrl_adc6_default
++            &pinctrl_adc7_default
++            &pinctrl_adc8_default
++            &pinctrl_adc9_default
++            &pinctrl_adc10_default
++            &pinctrl_adc11_default
++            &pinctrl_adc12_default>;
 +};
 -- 
 2.25.1
