@@ -15,11 +15,11 @@ PR = "r1"
 PV = "0.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/openbmc/openpower-hw-diags"
-SRCREV = "f4792d68505ca033ac01ff42b806d9d7569cf7ff"
+SRCREV = "a00426f5e88b9d56a7e578971c3c0b7c21a58e1c"
 
 S = "${WORKDIR}/git"
 
-inherit meson systemd
+inherit pkgconfig meson systemd
 
 SYSTEMD_SERVICE:${PN} = "attn_handler.service"
 
