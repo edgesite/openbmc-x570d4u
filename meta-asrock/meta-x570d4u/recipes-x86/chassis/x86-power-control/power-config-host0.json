@@ -2,25 +2,25 @@
     "gpio_configs": [
         {
             "Name" : "IdButton",
-            "LineName" : "",
+            "LineName" : "LOCATORBTN",
             "Type" : "GPIO",
             "Polarity": "ActiveLow"
         },
         {
             "Name" : "NMIButton",
-            "LineName" : "",
+            "LineName" : "NMI_BTN_N",
             "Type" : "GPIO",
             "Polarity": "ActiveLow"
         },
         {
             "Name" : "NMIOut",
-            "LineName" : "",
+            "LineName" : "BMC_NMI",
             "Type" : "GPIO",
             "Polarity": "ActiveHigh"
         },
         {
             "Name" : "PostComplete",
-            "LineName" : "",
+            "LineName" : "FM_BIOS_POST_CMPLT_N",
             "Type" : "GPIO",
             "Polarity": "ActiveLow"
         },
@@ -32,7 +32,7 @@
         },
         {
             "Name" : "PowerOk",
-            "LineName" : "",
+            "LineName" : "O_PWROK",
             "Type" : "GPIO",
             "Polarity": "ActiveHigh"
         },
@@ -68,7 +68,7 @@
         },
         {
             "Name" : "SIOS5",
-            "LineName" : "",
+            "LineName" : "SLP_S5",
             "Type" : "GPIO",
             "Polarity": "ActiveLow"
         }

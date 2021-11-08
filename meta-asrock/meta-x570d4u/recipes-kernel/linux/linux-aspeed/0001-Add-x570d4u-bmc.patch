@@ -11,7 +11,7 @@ Subject: [PATCH] Add x570d4u bmc
 diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts
 new file mode 100644
 index 000000000000..c3efd704d2c2
-@@ -0,0 +1,345 @@
+@@ -0,0 +1,377 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/dts-v1/;
 +#include "aspeed-g5.dtsi"
@@ -81,7 +81,7 @@ index 000000000000..c3efd704d2c2
 +        };
 +    };
 +    
-+    gpio-keys {
++    /*gpio-keys {
 +        compatible = "gpio-keys";
 +
 +        uid-button {
@@ -89,7 +89,7 @@ index 000000000000..c3efd704d2c2
 +            gpios = <&gpio ASPEED_GPIO(F, 1) GPIO_ACTIVE_LOW>;
 +            linux,code = <ASPEED_GPIO(F, 1)>;
 +        };
-+    };
++    };*/
 +    
 +    iio-hwmon {
 +        compatible = "iio-hwmon";
@@ -102,36 +102,64 @@ index 000000000000..c3efd704d2c2
 +&gpio {
 +    status = "okay";
 +    gpio-line-names =
-+    /*A0-A7*/       "","","","","","","","",
-+    /*B0-B7*/       "","","","","","","","",
-+    /*C0-C7*/       "","","","","","","","",
-+    /*D0-D7*/       "BMC_PSIN","BMC_PSOUT","BMC_RESETCON","RESETCON","","","","",
-+    /*E0-E7*/       "","","","","","","","",
-+    /*F0-F7*/       "","","","","","","","",
-+    /*G0-G7*/       "HWM_BAT_EN","","","","","","","",
-+    /*H0-H7*/       "","","","","MFG_MODE_N","","BMC_HB_LED_N","",
-+    /*I0-I7*/       "","","","","","","","",
-+    /*J0-J7*/       "BMC_READY","","","","","","","",
-+    /*K0-K7*/       "","","","","","","","",
-+    /*L0-L7*/       "","","","","","","","",
-+    /*M0-M7*/       "","","","","","","","",
-+    /*N0-N7*/       "","","","",
-+                    "","","","",
-+    /*O0-O7*/       "","","","","","","","",
-+    /*P0-P7*/       "","","","","","","","",
-+    /*Q0-Q7*/       "","","","","","","","",
-+    /*R0-R7*/       "","","","","","","","",
-+    /*S0-S7*/       "","","","","","","","",
-+    /*T0-T7*/       "","","","","","","","",
-+    /*U0-U7*/       "","","","","","","","",
-+    /*V0-V7*/       "","","","","","","","",
-+    /*W0-W7*/       "","","","","","","","",
-+    /*X0-X7*/       "","","","","","","","",
-+    /*Y0-Y7*/       "","","","","","","","",
-+    /*Z0-Z7*/       "","","SYSTEM_FAULT_LED_N","","","","","",
-+    /*AA0-AA7*/     "","","","","","","","",
-+    /*AB0-AB7*/     "","","","","","","","",
-+    /*AC0-AC7*/     "","","","","","","","";
++    /*A0-A3*/       "LOCATORLED_STATUS_N", "",                   "",                   "",
++    /*A4-A7*/       "",                    "",                   "",                   "",
++    /*B0-B3*/       "FM_BIOS_POST_CMPLT_N","",                   "",                   "",
++    /*B4-B7*/       "",                    "",                   "",                   "",
++    /*C0-C3*/       "",                    "",                   "",                   "",
++    /*C4-C7*/       "",                    "",                   "LOCATORBTN",         "",
++    /*D0-D3*/       "BMC_PSIN",            "BMC_PSOUT",          "BMC_RESETCON",       "RESETCON",
++    /*D4-D7*/       "",                    "",                   "",                   "",
++    /*E0-E3*/       "",                    "",                   "",                   "",
++    /*E4-E7*/       "",                    "",                   "",                   "",
++    /*F0-F3*/       "",                    "",                   "",                   "",
++    /*F4-F7*/       "",                    "",                   "",                   "",
++    /*G0-G3*/       "HWM_BAT_EN",          "CHASSIS_ID0",        "CHASSIS_ID1",        "CHASSIS_ID2",
++    /*G4-G7*/       "BMC_ALERT1_N_R",      "BMC_ALERT2_N_R",     "BMC_ALERT3_N",       "",
++    /*H0-H3*/       "",                    "",                   "",                   "",
++    /*H4-H7*/       "MFG_MODE_N",          "",                   "BMC_HB_LED_N",       "BMC_CASEOPEN",
++    /*I0-I3*/       "",                    "",                   "",                   "",
++    /*I4-I7*/       "",                    "",                   "",                   "",
++    /*J0-J3*/       "BMC_READY",           "",                   "",                   "",
++    /*J4-J7*/       "",                    "",                   "",                   "",
++    /*K0-K3*/       "",                    "",                   "",                   "",
++    /*K4-K7*/       "",                    "",                   "",                   "",
++    /*L0-L3*/       "",                    "",                   "",                   "",
++    /*L4-L7*/       "",                    "",                   "",                   "",
++    /*M0-M3*/       "",                    "",                   "",                   "",
++    /*M4-M7*/       "",                    "",                   "",                   "",
++    /*N0-N3*/       "",                    "",                   "",                   "",
++    /*N4-N7*/       "",                    "",                   "",                   "",
++    /*O0-O3*/       "",                    "",                   "",                   "",
++    /*O4-O7*/       "",                    "",                   "",                   "",
++    /*P0-P3*/       "",                    "",                   "",                   "",
++    /*P4-P7*/       "",                    "",                   "",                   "",
++    /*Q0-Q3*/       "",                    "",                   "",                   "",
++    /*Q4-Q7*/       "BMC_SBM_PRESENT_1_N", "BMC_SBM_PRESENT_2_N","BMC_SBM_PRESENT_3_N","BMC_PCIE_WAKE_N",
++    /*R0-R3*/       "",                    "",                   "",                   "",
++    /*R4-R7*/       "",                    "",                   "",                   "",
++    /*S0-S3*/       "",                    "",                   "",                   "",
++    /*S4-S7*/       "",                    "",                   "",                   "",
++    /*T0-T3*/       "",                    "",                   "",                   "",
++    /*T4-T7*/       "",                    "",                   "",                   "",
++    /*U0-U3*/       "",                    "",                   "",                   "",
++    /*U4-U7*/       "",                    "",                   "",                   "",
++    /*V0-V3*/       "",                    "",                   "",                   "",
++    /*V4-V7*/       "",                    "",                   "",                   "",
++    /*W0-W3*/       "",                    "",                   "",                   "",
++    /*W4-W7*/       "",                    "",                   "",                   "",
++    /*X0-X3*/       "",                    "",                   "",                   "",
++    /*X4-X7*/       "",                    "",                   "",                   "",
++    /*Y0-Y3*/       "SLP_S3",              "SLP_S5",             "",                   "",
++    /*Y4-Y7*/       "",                    "",                   "",                   "",
++    /*Z0-Z3*/       "",                    "",                   "SYSTEM_FAULT_LED_N", "",
++    /*Z4-Z7*/       "",                    "",                   "",                   "",
++    /*AA0-AA3*/     "",                    "",                   "",                   "",
++    /*AA4-AC7*/     "",                    "",                   "",                   "",
++    /*AB0-AB3*/     "",                    "",                   "",                   "",
++    /*AB4-AC7*/     "",                    "",                   "",                   "",
++    /*AC0-AC3*/     "",                    "",                   "",                   "",
++    /*AC4-AC7*/     "",                    "",                   "",                   "";
 +    
 +    /* Assert BMC_READY so BIOS doesn't sit around waiting for it */
 +    bmc-ready {
@@ -173,6 +201,10 @@ index 000000000000..c3efd704d2c2
 +      use-ncsi;
 +};
 +
++&i2c0 {
++    status = "okay";
++};
++
 +&i2c1 {
 +    status = "okay";
 +
@@ -183,13 +215,17 @@ index 000000000000..c3efd704d2c2
 +    };
 +};
 +
++&i2c2 {
++    status = "okay";
++};
++
 +&i2c3 {
 +    status = "okay";
 +};
 +
 +&i2c4 {
 +    status = "okay";
-+    
++
 +    /* I2C mux */
 +    i2c-switch@70 {
 +        compatible = "nxp,pca9545";
@@ -228,7 +264,7 @@ index 000000000000..c3efd704d2c2
 +    };
 +};
 +
-+&i2c6 {
++&i2c5 {
 +    status = "okay";
 +};
 +
@@ -243,10 +279,6 @@ index 000000000000..c3efd704d2c2
 +    };
 +};
 +
-+&i2c8 {
-+    status = "okay";
-+};
-+
 +&gfx {
 +    status = "okay";
 +};
@@ -259,15 +291,15 @@ index 000000000000..c3efd704d2c2
 +    status = "okay";
 +};
 +
-+/*&ehci1 {
++&ehci1 {
 +    status = "okay";
 +};
 +&uhci {
 +    status = "okay";
-+};*/
++};
 +
 +&kcs3 {
-+    kcs_addr = <0xca2>;
++    aspeed,lpc-io-reg = <0xca2>;
 +    status = "okay";
 +};
 +
@@ -344,18 +376,18 @@ index 000000000000..c3efd704d2c2
 +    status = "okay";
 +    pinctrl-names = "default";
 +    pinctrl-0 = <&pinctrl_adc0_default
-+            &pinctrl_adc1_default
-+            &pinctrl_adc2_default
-+            &pinctrl_adc3_default
-+            &pinctrl_adc4_default
-+            &pinctrl_adc5_default
-+            &pinctrl_adc6_default
-+            &pinctrl_adc7_default
-+            &pinctrl_adc8_default
-+            &pinctrl_adc9_default
-+            &pinctrl_adc10_default
-+            &pinctrl_adc11_default
-+            &pinctrl_adc12_default>;
++                &pinctrl_adc1_default
++                &pinctrl_adc2_default
++                &pinctrl_adc3_default
++                &pinctrl_adc4_default
++                &pinctrl_adc5_default
++                &pinctrl_adc6_default
++                &pinctrl_adc7_default
++                &pinctrl_adc8_default
++                &pinctrl_adc9_default
++                &pinctrl_adc10_default
++                &pinctrl_adc11_default
++                &pinctrl_adc12_default>;
 +};
 -- 
 2.25.1
