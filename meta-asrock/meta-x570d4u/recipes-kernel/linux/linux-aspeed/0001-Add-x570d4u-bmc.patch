@@ -11,7 +11,7 @@ Subject: [PATCH] Add x570d4u bmc
 diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts
 new file mode 100644
 index 000000000000..c3efd704d2c2
-@@ -0,0 +1,372 @@
+@@ -0,0 +1,375 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/dts-v1/;
 +#include "aspeed-g5.dtsi"
@@ -238,10 +238,10 @@ index 000000000000..c3efd704d2c2
 +        #size-cells = <0>;
 +        reg = <0x70>;
 +
-+        /*interrupt-parent = <&ipic>;
-+        interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
++        interrupt-parent = <&i2c_ic>;
++        interrupts = <4>;
 +        interrupt-controller;
-+        #interrupt-cells = <2>;*/
++        #interrupt-cells = <2>;
 +
 +        i2c@0 {
 +            #address-cells = <1>;
@@ -367,7 +367,7 @@ index 000000000000..c3efd704d2c2
 +    };
 +};
 +
-+&adc {
++/*&adc {
 +    status = "okay";
 +    pinctrl-names = "default";
 +    pinctrl-0 = <&pinctrl_adc0_default
@@ -382,7 +382,10 @@ index 000000000000..c3efd704d2c2
 +                &pinctrl_adc9_default
 +                &pinctrl_adc10_default
 +                &pinctrl_adc11_default
-+                &pinctrl_adc12_default>;
-+};
++                &pinctrl_adc12_default
++                &pinctrl_adc13_default
++                &pinctrl_adc14_default
++                &pinctrl_adc15_default>;
++};*/
 -- 
 2.25.1
