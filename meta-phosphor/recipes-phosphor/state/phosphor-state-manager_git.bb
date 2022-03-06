@@ -21,6 +21,7 @@ STATE_MGR_PACKAGES = " \
     ${PN}-systemd-target-monitor \
     ${PN}-obmc-targets \
     ${PN}-scheduled-host-transition \
+    ${PN}-chassis-check-power-status \
 "
 PACKAGE_BEFORE_PN += "${STATE_MGR_PACKAGES}"
 ALLOW_EMPTY:${PN} = "1"
@@ -74,7 +75,9 @@ DBUS_SERVICE:${PN}-chassis += "xyz.openbmc_project.State.Chassis.service"
 FILES:${PN}-chassis += "${bindir}/obmcutil"
 
 FILES:${PN}-bmc = "${bindir}/phosphor-bmc-state-manager"
+FILES:${PN}-bmc += "${sysconfdir}/phosphor-systemd-target-monitor/phosphor-service-monitor-default.json"
 DBUS_SERVICE:${PN}-bmc += "xyz.openbmc_project.State.BMC.service"
+DBUS_SERVICE:${PN}-bmc += "obmc-bmc-service-quiesce@.target"
 
 FILES:${PN}-hypervisor = "${bindir}/phosphor-hypervisor-state-manager"
 DBUS_SERVICE:${PN}-hypervisor += "xyz.openbmc_project.State.Hypervisor.service"
@@ -98,6 +101,9 @@ SYSTEMD_SERVICE:${PN}-systemd-target-monitor += "phosphor-systemd-target-monitor
 
 FILES:${PN}-scheduled-host-transition = "${bindir}/phosphor-scheduled-host-transition"
 DBUS_SERVICE:${PN}-scheduled-host-transition += "xyz.openbmc_project.State.ScheduledHostTransition.service"
+
+FILES:${PN}-chassis-check-power-status = "${bindir}/phosphor-chassis-check-power-status"
+SYSTEMD_SERVICE:${PN}-chassis-check-power-status += "phosphor-chassis-check-power-status@.service"
 
 # Chassis power synchronization targets
 # - start-pre:         Services to run before we start power on process
@@ -187,6 +193,6 @@ SYSTEMD_LINK:${PN}-obmc-targets += "${@compose_list(d, 'QUIESCE_FMT', 'HOST_ERRO
 
 
 SRC_URI += "git://github.com/openbmc/phosphor-state-manager;branch=master;protocol=https"
-SRCREV = "ba2241c636735fbc12a870a316b8b0d9a850557e"
+SRCREV = "b669ea30765277634b0a42d83dc417246c76e192"
 
 S = "${WORKDIR}/git"
