@@ -32,7 +32,7 @@
         },
         {
             "Name" : "PowerOk",
-            "LineName" : "O_PWROK",
+            "LineName" : "PS_PWROK",
             "Type" : "GPIO",
             "Polarity": "ActiveHigh"
         },
@@ -56,15 +56,11 @@
         },
         {
             "Name" : "SioOnControl",
-            "LineName" : "",
-            "Type" : "GPIO",
-            "Polarity": "ActiveLow"
+            "LineName" : ""
         },
         {
             "Name" : "SioPowerGood",
-            "LineName" : "",
-            "Type" : "GPIO",
-            "Polarity": "ActiveHigh"
+            "LineName" : ""
         },
         {
             "Name" : "SIOS5",
