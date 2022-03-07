@@ -1,0 +1,3 @@
+FRUMAC_DEV="eth0"
+FRUMAC_FILE="/sys/bus/i2c/devices/i2c-7/7-0057/eeprom"
+FRUMAC_OFFSET="$((0x3f80))"
