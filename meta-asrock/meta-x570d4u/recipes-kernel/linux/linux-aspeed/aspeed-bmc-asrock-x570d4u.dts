@@ -206,9 +206,9 @@
                           "FAN2_FAULT_LED_N", "FAN3_FAULT_LED_N", "FAN6_FAULT_LED_N", "";
     };
 
-    /* SuperIO */
-    nct67XX@2d {
-        compatible = "nuvoton,nct67XX-i2c";
+    /* SuperIO (Note: chip is marked NCT6796D-R but behaves like a NCT6798) */
+    nct6798@2d {
+        compatible = "nuvoton,nct6798";
         reg = <0x2d>;
     };
 
