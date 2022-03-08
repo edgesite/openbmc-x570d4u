@@ -207,10 +207,10 @@
     };
 
     /* SuperIO (Note: chip is marked NCT6796D-R but behaves like a NCT6798) */
-    nct6798@2d {
+    /*nct6798@2d {
         compatible = "nuvoton,nct6798";
         reg = <0x2d>;
-    };
+    };*/
 
     /* Thermal sensor */
     w83773g@4c {
